@@ -1,0 +1,5 @@
+mcm/org.alloytools.alloy.dist.jar
+consistency_proof/dafny/*
+*.json
+*.md
+!README.md
