@@ -3,8 +3,8 @@ open tako
 ////////////////////////////////////////////////////////////////////////////////
 // Litmus Test from Motivation Section
 // 
-// thread 0   onMiss_X onE_X onWB_X
-// Wcb x 1    (2)       ()   W Y 1
+// core 0     onMiss_X  onE_X onWB_X
+// Wcb x 1    (2)       ()    W Y 1
 // Rcb x
 // R Y
 
@@ -36,7 +36,7 @@ one sig RcbX   in CallbackMemEvent {}
 one sig RY     in MemoryEvent {}
 
 
-fact thread0 {
+fact core0 {
   // address bindings
   WcbX in WriteCB
   WcbX.address = X
@@ -89,7 +89,7 @@ fact onwb_x {
     )))
 }
 
-// only allowable threads are thread 0, onmiss x, onwb x, onevict x
+// only allowable threads are core 0, onmiss x, onwb x, onevict x
 fact allowed_threads {
   all e : Event |
     e in InitialEvent or

@@ -3,7 +3,7 @@ open tako
 ////////////////////////////////////////////////////////////////////////////////
 // Litmus Test: Message Passing (MP)
 // 
-// thread 0  thread 1
+// core 0    core 1
 // W X 1     R Y
 // W Y 1     R X
 
@@ -41,7 +41,7 @@ one sig RY  in MemoryEvent {}
 one sig RX  in MemoryEvent {}
 
 
-fact thread0 {
+fact core0 {
   // address bindings
   WX in Write
   WX.address = X
@@ -56,7 +56,7 @@ fact thread0 {
   all e: Event | (WX->e in thd) implies e = WX or e = WY
 }
 
-fact thread1 {
+fact core1 {
   // address bindings
   RY in Read
   RY.address = Y
@@ -69,7 +69,7 @@ fact thread1 {
   all e: Event | (RY->e in thd) implies e = RY or e = RX
 }
 
-// only allowable threads are thread 0, and thread 1
+// only allowable threads are core 0, and core 1
 fact allowed_threads {
   all e : Event |
     e in InitialEvent or

@@ -3,7 +3,7 @@ open tako
 ////////////////////////////////////////////////////////////////////////////////
 // Litmus test for HATS (No Race)
 // 
-// thread 0        onMiss E       onEvict/WB E
+// core 0           onMiss E       onEvict/WB E
 // RMWcb E 1        r2 = R G        if E != 1:
 // Flush E          if r2 != 1        W L 1
 // R L                W G 1
@@ -46,7 +46,7 @@ one sig RMWcbE in CallbackMemEvent {}
 one sig FlE    in Flush {}
 one sig RL     in MemoryEvent {}
 
-fact thread0 {
+fact core0 {
   // address bindings
   RMWcbE in RMWCB
   RMWcbE.address = E
@@ -121,7 +121,7 @@ fact onevict_owb_e {
 }
 
 
-// only allowable threads are thread 0, onmiss e, onwb e, onevict e
+// only allowable threads are core 0, onmiss e, onwb e, onevict e
 fact allowed_threads {
   all e : Event |
     e in InitialEvent or

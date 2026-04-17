@@ -3,8 +3,8 @@ open tako
 ////////////////////////////////////////////////////////////////////////////////
 // Litmus test for Flush Utility
 // 
-// thread 0   onMiss_X onE_X onWB_X
-// RMWcb x 1    ()       ()   W Y 1
+// core 0     onMiss_X onE_X onWB_X
+// Wcb X 1    (0)      ()    W Y 1
 // Fl X
 // R Y
 
@@ -31,25 +31,25 @@ fact init {
 }
 
 // main program instructions
-one sig RMWcbX in CallbackMemEvent {}
+one sig WcbX in CallbackMemEvent {}
 one sig FlX    in Flush {}
 one sig RY     in MemoryEvent {}
 
 
-fact thread0 {
+fact core0 {
   // address bindings
-  RMWcbX in RMWCB
-  RMWcbX.address = X
+  WcbX in WriteCB
+  WcbX.address = X
 
   FlX.address = X
 
   RY in Read
   RY.address = Y
 
-  RMWcbX->FlX in sb
+  WcbX->FlX in sb
   FlX->RY in sb
   // only these events in this thread
-  all e: Event | (RMWcbX->e in thd) implies e = RMWcbX or e = FlX or e = RY
+  all e: Event | (WcbX->e in thd) implies e = WcbX or e = FlX or e = RY
 }
 
 
@@ -88,17 +88,16 @@ fact onwb_x {
     )))
 }
 
-// only allowable threads are thread 0, onmiss x, onwb x, onevict x
+// only allowable threads are core 0, onmiss x, onwb x, onevict x
 fact allowed_threads {
   all e : Event |
     e in InitialEvent or
-    RMWcbX->e in thd or
+    WcbX->e in thd or
     (some ms: MissStart | ms->e in thd) or 
     (some es: EvictStart | es->e in thd)
 }
 
 run allowed {
-  RMWcbX.rval = Zero
   RY.rval = One
 } for 9 Event
 
@@ -108,6 +107,5 @@ run no_race {
 } for 9 Event
 
 run forbidden {
-  RMWcbX.rval = Zero
   RY.rval = Zero
 } for 9 Event
