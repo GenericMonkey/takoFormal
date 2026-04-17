@@ -21,6 +21,16 @@ java $JAVA_FLAGS -jar $MCM_DIR/org.alloytools.alloy.dist.jar exec -c forbidden -
 echo "Expected Output: UNSAT (outcome impossible)"
 echo ""
 
+echo "Running test_mp_rmwcb.als..."
+java $JAVA_FLAGS -jar $MCM_DIR/org.alloytools.alloy.dist.jar exec -c forbidden -f $MCM_DIR/test_mp_rmwcb.als
+echo "Expected Output: UNSAT (outcome impossible)"
+echo ""
+
+echo "Running test_icb_sb.als..."
+java $JAVA_FLAGS -jar $MCM_DIR/org.alloytools.alloy.dist.jar exec -c allowed -f $MCM_DIR/test_icb_sb.als
+echo "Expected Output: SAT (outcome possible)"
+echo ""
+
 echo "Running test_wbrace.als..."
 java $JAVA_FLAGS -jar $MCM_DIR/org.alloytools.alloy.dist.jar exec -c race -f $MCM_DIR/test_wbrace.als
 echo "Expected Output: SAT (race found)"
@@ -32,6 +42,24 @@ echo "Expected Output: UNSAT (no race found)"
 echo ""
 
 java $JAVA_FLAGS -jar $MCM_DIR/org.alloytools.alloy.dist.jar exec -c forbidden -f $MCM_DIR/test_wbflush.als
+echo "Expected Output: UNSAT (outcome impossible)"
+echo ""
+
+echo "Running test_phir.als..."
+java $JAVA_FLAGS -jar $MCM_DIR/org.alloytools.alloy.dist.jar exec -c race -f $MCM_DIR/test_phir.als
+echo "Expected Output: SAT (race found)"
+echo ""
+
+java $JAVA_FLAGS -jar $MCM_DIR/org.alloytools.alloy.dist.jar exec -c forbidden -f $MCM_DIR/test_phir.als
+echo "Expected Output: UNSAT (outcome impossible)"
+echo ""
+
+echo "Running test_phinr.als..."
+java $JAVA_FLAGS -jar $MCM_DIR/org.alloytools.alloy.dist.jar exec -c no_race -f $MCM_DIR/test_phinr.als
+echo "Expected Output: UNSAT (no race found)"
+echo ""
+
+java $JAVA_FLAGS -jar $MCM_DIR/org.alloytools.alloy.dist.jar exec -c forbidden -f $MCM_DIR/test_phinr.als
 echo "Expected Output: UNSAT (outcome impossible)"
 echo ""
 

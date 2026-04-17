@@ -74,10 +74,14 @@ The verification of the claims made about the litmus tests in the paper and the 
 |Figure 4a|`r1 = 2, r2 = 0` forbidden|`test_paper_ex.als`|
 |Figure 5a|`r1 = 1, r2 = 0` *allowed* (see $\S$ V-A)|`test_mp.als`|
 |Figure 5a (with RMW [b])|`r1 = 1, r2 = 0` forbidden (see $\S$ V-A)|`test_mp_rmw.als`|
+|Figure 5a (with RMWCB [b])|`r1 = 1, r2 = 0` forbidden (see TBD (extended version))|`test_mp_rmwcb.als`|
 |Figure 9a (w/o i2)|is racy|`test_wbrace.als`|
 |Figure 9a (w i2)|a) no race, b) `r1 = 0` forbidden|`test_wbflush.als`|
 |Figure 10a (w/o i9)|is racy|`test_hatsr.als`|
-|Figure 9a (w i9)|a) no race, b) `r1 != r2` forbidden|`test_hatsnr.als`|
+|Figure 10a (w i9)|a) no race, b) `r1 != r2` forbidden|`test_hatsnr.als`|
+|Figure TBD (extended version)|`r1 = 0, r2 = 0` allowed|`test_icb_sb.als`|
+|Figure TBD (extended version)|a) is racy, b) `r1 = 0` forbidden|`test_phir.als`|
+|Figure TBD (extended version)|a) no race, b) `r1 = 0, r2 = 0` forbidden|`test_phinr.als`|
 
 #### Running Verification (Alloy Litmus Tests)
 
@@ -97,7 +101,7 @@ Expected Output: UNSAT (outcome impossible)
 
 Conversely, SAT is expected when searching for racy executions and allowed outcomes.
 
-The entire script should complete within 10 minutes (5m 5s when ran locally), with `test_hatsnr.als` taking the longest time to run.
+The entire script should complete within 10 minutes (7m 17s when ran locally), with `test_hatsnr.als` taking the longest time to run.
 
 ### Soundness Proof
 
