@@ -67,21 +67,33 @@ This can be accomplished by extracting the appropriate `.zip` installation into 
 
 ### Alloy Litmus Tests
 
-The verification of the claims made about the litmus tests in the paper and the mapping to specific files in this directory is presented in the following table.
+The verification of the claims made about the litmus tests in the conference version of this paper and the mapping to specific files in this directory is presented in the following table.
 
 |Paper Figure|Claimed Result|Corresponding File|
 |---|---|---|
 |Figure 4a|`r1 = 2, r2 = 0` forbidden|`test_paper_ex.als`|
 |Figure 5a|`r1 = 1, r2 = 0` *allowed* (see $\S$ V-A)|`test_mp.als`|
 |Figure 5a (with RMW [b])|`r1 = 1, r2 = 0` forbidden (see $\S$ V-A)|`test_mp_rmw.als`|
-|Figure 5a (with RMWCB [b])|`r1 = 1, r2 = 0` forbidden (see TBD (extended version))|`test_mp_rmwcb.als`|
 |Figure 9a (w/o i2)|is racy|`test_wbrace.als`|
-|Figure 9a (w i2)|a) no race, b) `r1 = 0` forbidden|`test_wbflush.als`|
+|Figure 9b (w i2)|a) no race, b) `r1 = 0` forbidden|`test_wbflush.als`|
 |Figure 10a (w/o i9)|is racy|`test_hatsr.als`|
-|Figure 10a (w i9)|a) no race, b) `r1 != r2` forbidden|`test_hatsnr.als`|
-|Figure TBD (extended version)|`r1 = 0, r2 = 0` allowed|`test_icb_sb.als`|
-|Figure TBD (extended version)|a) is racy, b) `r1 = 0` forbidden|`test_phir.als`|
-|Figure TBD (extended version)|a) no race, b) `r1 = 0, r2 = 0` forbidden|`test_phinr.als`|
+|Figure 10b (w i9)|a) no race, b) `r1 != r2` forbidden|`test_hatsnr.als`|
+
+The mapping for (the superset of) figures/results presented in the extended version of this paper available on ArXiv is presented in the following table.
+
+|Extended Paper Figure|Claimed Result|Corresponding File|
+|---|---|---|
+|Figure 4a|`r1 = 2, r2 = 0` forbidden|`test_paper_ex.als`|
+|Figure 5a|`r1 = 1, r2 = 0` *allowed* (see $\S$ V-A)|`test_mp.als`|
+|Figure 9a (with RMW [b])|`r1 = 1, r2 = 0` forbidden|`test_mp_rmw.als`|
+|Figure 9b (with RMWCB [b])|`r1 = 1, r2 = 0` forbidden|`test_mp_rmwcb.als`|
+|Figure 10|`r1 = 0, r2 = 0` allowed|`test_icb_sb.als`|
+|Figure 11a (w/o i2)|is racy|`test_wbrace.als`|
+|Figure 11b (w i2)|a) no race, b) `r1 = 0` forbidden|`test_wbflush.als`|
+|Figure 12a (w `OnWB` 1)|is racy|`test_phir.als`|
+|Figure 12b (w `OnWB` 2)|a) no race, b) `r1 = 0, r2 = 0` forbidden|`test_phinr.als`|
+|Figure 13a (w/o i9)|is racy|`test_hatsr.als`|
+|Figure 13b (w i9)|a) no race, b) `r1 != r2` forbidden|`test_hatsnr.als`|
 
 #### Running Verification (Alloy Litmus Tests)
 
